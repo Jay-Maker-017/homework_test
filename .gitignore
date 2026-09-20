@@ -1,0 +1,31 @@
+# ---------- 构建产物 ----------
+build/
+build-*/
+cmake-build-*/
+out/
+compile_commands.json
+.cache/
+CMakeUserPresets.json
+
+# ---------- 编译中间文件与可执行文件 ----------
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.pdb
+
+# ---------- 编辑器 / IDE ----------
+.idea/
+.vscode/ipch/
+.vscode/*.log
+*.code-workspace
+
+# ---------- 操作系统生成的文件 ----------
+Thumbs.db
+Desktop.ini
+.DS_Store

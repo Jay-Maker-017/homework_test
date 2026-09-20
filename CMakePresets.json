@@ -1,0 +1,56 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 21,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "description": "各平台共用的基础配置",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "linux",
+      "displayName": "Linux (GCC)",
+      "description": "Ubuntu 22.04 + 系统自带 OpenCV 4.5.4",
+      "inherits": "base",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "windows",
+      "displayName": "Windows (MinGW)",
+      "description": "Windows + MinGW-w64 GCC 14.2.0（需要 MinGW 版 OpenCV）",
+      "inherits": "base",
+      "generator": "MinGW Makefiles",
+      "binaryDir": "${sourceDir}/build-windows",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "D:/MyInstallers/MinGW/x86_64-14.2.0-release-win32-seh-ucrt-rt_v12-rev2/mingw64/bin/gcc.exe",
+        "CMAKE_CXX_COMPILER": "D:/MyInstallers/MinGW/x86_64-14.2.0-release-win32-seh-ucrt-rt_v12-rev2/mingw64/bin/g++.exe",
+        "CMAKE_MAKE_PROGRAM": "D:/MyInstallers/MinGW/x86_64-14.2.0-release-win32-seh-ucrt-rt_v12-rev2/mingw64/bin/mingw32-make.exe"
+        
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "linux",
+      "displayName": "构建 (Linux)",
+      "configurePreset": "linux"
+    },
+    {
+      "name": "windows",
+      "displayName": "构建 (Windows MinGW)",
+      "configurePreset": "windows"
+    }
+  ]
+}

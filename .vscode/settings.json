@@ -1,0 +1,14 @@
+{
+    // Linux 侧不需要任何额外配置：
+    // clangd 会自动在源文件各级父目录的 build/ 子目录下发现 CMake 生成的
+    // compile_commands.json（本工程的 Linux 构建目录就是 build/）。
+    //
+    // Windows 侧的构建目录是 build-windows/，clangd 不会自动发现它，
+    // 需要在本机（Windows）的【用户设置】settings.json 里加一行：
+    //     "clangd.arguments": ["--compile-commands-dir=build-windows"]
+    // 注意：不要写进这个文件。本文件位于共享目录，会被带到 Linux 上，
+    // 写死 Windows 路径会反过来破坏 Linux 的自动发现。
+    "clangd.fallbackFlags": [
+        "-std=c++17"
+    ]
+}
