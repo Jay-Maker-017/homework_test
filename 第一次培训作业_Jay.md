@@ -68,14 +68,13 @@ CMake 把算法实现单独打包成静态库 reprojection，并用 "PUBLIC" 把
  780]
 像素欧氏距离 err = 7.45356 px
 ```
-感觉没什么问题
 
 
 **误差分析**
 
 1. **误差定义**。这里的"误差"是重投影点到观测点的像素欧氏距离,主要用于衡量投影残差的大小。
 2. **7.45356 px 是我人为构造的，不是算法误差**。因为观测点 $(3250,780)$ 是自行构造的，与实际值有偏差。
-3.好像也没有别的误差了……吧……
+3. 好像也没有别的误差了……吧……
 
 
 ## 三、遇到的问题与解决办法
@@ -83,9 +82,13 @@ CMake 把算法实现单独打包成静态库 reprojection，并用 "PUBLIC" 把
 **主要都是配环境遇到的问题，和红色波浪线斗争了一个上午 www……**
 1. **`#include <opencv2/core.hpp>` 报文件不存在。** Ubuntu 把 OpenCV 4 的头文件装在 `/usr/include/opencv4`，该目录一开始找不到。最后在AI的帮助下用 `find_package(OpenCV REQUIRED)` 解决了。
 2. **编辑器里所有 OpenCV 头文件和相关的东西都标红。** 原因好像是 clangd 找不到 `compile_commands.json`，无法解析头文件路径。解决办法：在 `CMakeLists.txt` 中打开 `CMAKE_EXPORT_COMPILE_COMMANDS`，然后根据AI的说法把 Linux 的 `binaryDir` 定为仓库根下的 `build/`，这样 clangd 会自动向上级目录查找 `build/compile_commands.json`。
+3. 还有一些乱七八糟的，不记得了……
+4. 然后VScode里git插件的使用又研究了好一会儿……
+**以上所有的问题都由伟大的AI帮我解决**
+
 
 ## 四、代码仓库链接、PR 链接和最终提交的 commit hash
 
-- 代码仓库：`<待填写：仓库 URL>`
-- PR 链接：`<待填写：PR URL>`
+- [`代码仓库链接`](https://github.com/Jay-Maker-017/homework_test)
+- [`PR链接`](https://github.com/Jay-Maker-017/homework_test/pull/1)
 - 最终提交 hash：`<待填写：commit hash>`
