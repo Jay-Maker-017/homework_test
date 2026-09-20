@@ -1,6 +1,8 @@
 #include "reprojection.hpp"
 #include <iostream>
 
+//歪比巴卜
+
 // 构造数据验证重投影: 输入三维点 Pw、相机内参 K、世界到相机的已知外参 (Pc = R * Pw + t),
 // 输出二维像素坐标, 并计算与对应观测点之间的像素欧氏距离。
 // 重投影算法与非正深度的异常处理见 include/reprojection.hpp 与 src/reprojection.cpp。
