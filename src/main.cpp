@@ -5,7 +5,6 @@
 //   输出 二维像素坐标，并计算与对应观测点之间的像素欧氏距离；
 //   需处理非正深度等异常情况。
 int main() {
-    std::cout << "OpenCV 版本: " << CV_VERSION << '\n';
 
     // 相机内参 K, fx = fy = 800, 主点 (cx, cy) = (320, 240)
     const cv::Mat_<double> K =
@@ -53,9 +52,6 @@ int main() {
     const cv::Mat_<double> duv = uv - uv_obs;
     const double err = cv::norm(duv);
     std::cout << "像素欧氏距离 err = " << err << " px\n";
-
-    
-
 
     return 0;
 }
