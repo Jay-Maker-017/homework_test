@@ -15,7 +15,7 @@ Reprojection Reproject(const cv::Mat_<double>& Pw,
         return result;
     }
 
-    // 归一化平面坐标 (理想针孔模型, 忽略畸变)
+    // 归一化平面坐标
     const double x = Pc(0) / result.depth;
     const double y = Pc(1) / result.depth;
 
@@ -27,6 +27,6 @@ Reprojection Reproject(const cv::Mat_<double>& Pw,
 }
 
 double PixelDistance(const cv::Mat_<double>& uv, const cv::Mat_<double>& uv_obs) {
-    // cv::norm 默认即 L2 范数, 对 (Δu, Δv) 求模得到像素欧氏距离
+    // 用 cv::norm 得到像素欧氏距离
     return cv::norm(uv - uv_obs);
 }
