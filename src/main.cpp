@@ -1,5 +1,4 @@
 #include <opencv2/opencv.hpp>
-
 #include <iostream>
 
 // TODO(作业): 下面是验证「头文件能否找到 + 库能否链接」的占位 main。

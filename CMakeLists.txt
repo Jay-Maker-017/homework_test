@@ -33,7 +33,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #      因此这里不需要手写 include_directories。
 # ---------------------------------------------------------------------------
 find_package(OpenCV REQUIRED)
-
 message(STATUS "OpenCV 版本: ${OpenCV_VERSION}")
 message(STATUS "OpenCV 头文件目录: ${OpenCV_INCLUDE_DIRS}")
 
