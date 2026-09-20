@@ -46,8 +46,8 @@ build-windows\reproject.exe
 
 ## Windows 上的 OpenCV 路径
 
-仓库里不写死别人机器上的绝对路径。若 MinGW 版 OpenCV 不在标准位置，
-在仓库根目录新建 `CMakeUserPresets.json`（已被 `.gitignore` 忽略，各人各写）：
+仓库里不写死机器上的绝对路径。若 MinGW 版 OpenCV 不在标准位置，
+在仓库根目录新建 `CMakeUserPresets.json`（已被 `.gitignore` 忽略）：
 
 ```json
 {
@@ -91,10 +91,17 @@ Get-ChildItem -Path D:\ -Recurse -Filter OpenCVConfig.cmake -ErrorAction Silentl
 
 ## 目录结构
 
+### （此处为了迎合作业要求特意分了文件，虽然个人觉得不一定有必要）
+
 ```
-CMakeLists.txt      构建脚本
-CMakePresets.json   linux / windows 两套 preset
-src/main.cpp        程序入口（占位 main，待实现重投影）
-build/              Linux 构建目录（生成物，已忽略）
-build-windows/      Windows 构建目录（生成物，已忽略）
+CMakeLists.txt              构建脚本
+CMakePresets.json           linux / windows 两套 preset
+include/reprojection.hpp    重投影接口（数据结构与函数声明）
+src/reprojection.cpp        重投影实现
+src/main.cpp                程序入口：构造数据、调用并打印结果
+build/                      Linux 构建目录（生成物，已忽略）
+build-windows/              Windows 构建目录（生成物，已忽略）
 ```
+
+CMake 里 `include/` 与 OpenCV 均通过 `PUBLIC` 传递：链接 `reprojection` 的目标
+会自动获得头文件搜索路径，无需重复写 `include_directories`。

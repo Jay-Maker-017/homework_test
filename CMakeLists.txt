@@ -37,14 +37,25 @@ message(STATUS "OpenCV 版本: ${OpenCV_VERSION}")
 message(STATUS "OpenCV 头文件目录: ${OpenCV_INCLUDE_DIRS}")
 
 # ---------------------------------------------------------------------------
+# 重投影库：头文件与实现文件分离
+# ---------------------------------------------------------------------------
+add_library(reprojection src/reprojection.cpp)
+
+# PUBLIC：include/ 既是本库自己的头文件目录，也自动传递给链接它的目标
+target_include_directories(reprojection PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# PUBLIC：OpenCV 的头文件路径与库一并传递给使用者
+target_link_libraries(reprojection PUBLIC ${OpenCV_LIBS})
+
+# ---------------------------------------------------------------------------
 # 可执行目标
 # ---------------------------------------------------------------------------
 add_executable(reproject src/main.cpp)
 
-target_link_libraries(reproject PRIVATE ${OpenCV_LIBS})
+target_link_libraries(reproject PRIVATE reprojection)
 
 # 只对 GNU/Clang 系编译器打开警告；MSVC 不认这些选项
-target_compile_options(
-    reproject
-    PRIVATE $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall -Wextra -Wpedantic>
-)
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(reprojection PRIVATE -Wall -Wextra -Wpedantic)
+    target_compile_options(reproject PRIVATE -Wall -Wextra -Wpedantic)
+endif()
