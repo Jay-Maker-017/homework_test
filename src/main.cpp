@@ -4,7 +4,6 @@
 //歪比巴卜
 
 int main() {
-    std::cout << "OpenCV 版本: " << CV_VERSION << '\n';
 
     // 相机内参 K, fx = fy = 800, 主点 (cx, cy) = (320, 240)
     const cv::Mat_<double> K =
